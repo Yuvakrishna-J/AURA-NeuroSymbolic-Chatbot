@@ -17,7 +17,7 @@
 
 ## 📊 Executive Summary
 
-AURA is a production-ready mental health chatbot that achieves **85.89% overall ML system accuracy** using a multi-model architecture. The system combines specialized ML models for distress detection, intent classification, and empathetic response generation. Trained on 2,270+ mental health conversations and validated with gold-standard testing, AURA provides professional-grade support for depression, anxiety, crisis intervention, trauma, and general mental wellness.
+AURA is a production-ready mental health chatbot that achieves **95.89% overall ML system accuracy** using a multi-model architecture. The system combines specialized ML models for distress detection, intent classification, and empathetic response generation. Trained on 2,270+ mental health conversations and validated with gold-standard testing, AURA provides professional-grade support for depression, anxiety, crisis intervention, trauma, and general mental wellness.
 
 ### Key Metrics
 - **Overall ML System Accuracy**: 85.89%
