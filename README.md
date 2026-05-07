@@ -60,7 +60,7 @@ This comprehensive dashboard shows all AURA ML model performance metrics in one 
 | **Random Forest Enhanced** | Distress Detection | 78.85% | 81.25% | 77.12% | 79.13% |
 | **T5-Small** | Empathetic Generation | 95%* | - | - | - |
 | **TF-IDF Fallback** | Intent Matching | 75% | - | - | - |
-| **Crisis Detector** | Suicide/Self-harm Detection | 100% | - | - | - |
+| **Crisis Detector** | Suicide/Self-harm Detection | 93% | - | - | - |
 
 *Estimated based on loss metrics (0.0032 final test loss)
 
