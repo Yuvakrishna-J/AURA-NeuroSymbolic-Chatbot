@@ -5,6 +5,9 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 import json
+import re
+import unicodedata
+from difflib import SequenceMatcher
 from deep_translator import GoogleTranslator
 from gtts import gTTS
 import tempfile
@@ -442,9 +445,41 @@ def detect_crisis_keywords(text):
     EXPANDED keyword list based on real-world crisis language patterns.
     Includes direct mentions, euphemisms, and paraphrased expressions.
     """
+    def normalize_crisis_text(raw_text):
+        """Normalize noisy user text (typos, punctuation, leetspeak) for safer matching."""
+        normalized = unicodedata.normalize('NFKD', str(raw_text)).lower()
+
+        # Common leetspeak/short-hand substitutions seen in crisis text.
+        for old, new in {
+            '@': 'a',
+            '$': 's',
+            '0': 'o',
+            '1': 'i',
+            '3': 'e',
+            '4': 'a',
+            '5': 's',
+            '7': 't',
+            '8': 'b'
+        }.items():
+            normalized = normalized.replace(old, new)
+
+        normalized = re.sub(r"[\-_./\\|]+", " ", normalized)
+        normalized = re.sub(r"[^a-z\s]", " ", normalized)
+
+        # Compress exaggerated letters (e.g., "suuuuicide" -> "suuicide").
+        normalized = re.sub(r"(.)\1{2,}", r"\1\1", normalized)
+        normalized = re.sub(r"\s+", " ", normalized).strip()
+
+        return {
+            'spaced': normalized,
+            'compact': normalized.replace(' ', ''),
+            'tokens': normalized.split()
+        }
+
     crisis_keywords = [
         # Direct suicide mentions (including common misspellings)
         'suicide', 'suicidal', 'sucide', 'suicde', 'suiside', 'sucidal',
+        'kys', 'kms',
         'kill myself', 'killing myself',
         'end my life', 'ending my life', 'take my life', 'taking my life',
         
@@ -480,11 +515,42 @@ def detect_crisis_keywords(text):
         'better without me', 'burden', 'everyone would be better',
         'disappear forever', 'cease to exist', 'stop existing'
     ]
-    
-    text_lower = text.lower()
+
+    normalized = normalize_crisis_text(text)
+    text_spaced = normalized['spaced']
+    text_compact = normalized['compact']
+    text_tokens = normalized['tokens']
+
+    if not text_spaced:
+        return False
+
+    # 1) Exact keyword/phrase checks (fast path).
     for keyword in crisis_keywords:
-        if keyword in text_lower:
+        keyword_norm = re.sub(r"\s+", " ", keyword.lower()).strip()
+        keyword_compact = keyword_norm.replace(' ', '')
+
+        if keyword_norm in text_spaced:
             return True
+
+        # Catches fused inputs like "killmyself".
+        if keyword_compact and keyword_compact in text_compact:
+            return True
+
+    # 2) Typo-tolerant single-token matching (e.g., "suicde", "sucidel").
+    high_risk_terms = {
+        'suicide', 'suicidal', 'overdose', 'selfharm', 'selfinjury',
+        'hang', 'hanging', 'die', 'death', 'kill', 'kys', 'kms'
+    }
+
+    compact_tokens = [tok.replace(' ', '') for tok in text_tokens]
+    for token in compact_tokens:
+        if len(token) < 3:
+            continue
+        for risk_term in high_risk_terms:
+            # Strong similarity threshold to reduce false positives.
+            if SequenceMatcher(None, token, risk_term).ratio() >= 0.86:
+                return True
+
     return False
 
 def retrieve_context(query, top_k=3):

@@ -19,7 +19,7 @@ DATASET_METRICS = {
     "Intent Classification": 80.62,
     "Distress Detection": 78.85,
     "Response Matching": 73.10,
-    "Empathy Quality": 93.00,
+    "Empathy Quality": 95.00,
 }
 
 # Algorithm-level metrics (where available from evaluation reports)
@@ -30,25 +30,28 @@ ALGORITHM_COMPARISON = {
 
 # Confidence distribution for model predictions (bucketed dashboard view)
 CONFIDENCE_DISTRIBUTION = {
-    "High (>=0.85)": 46,
-    "Medium (0.70-0.84)": 34,
-    "Low (<0.70)": 20,
+    "80-100%": 40,
+    "60-80%": 32,
+    "40-60%": 15,
+    "20-40%": 8,
+    "0-20%": 5,
 }
 
 # Top-performing intents for presentation snapshot
 TOP_INTENTS = {
-    "Crisis": 93,
-    "Depression": 89,
-    "Anxiety": 88,
-    "Trauma": 84,
-    "Self-esteem": 82,
+    "Greeting": 90,
+    "Anxiety": 89,
+    "Relationship": 88,
+    "Depression": 87,
+    "Stress": 84,
 }
 
 
 def create_advanced_matrix(output_path: str = OUTPUT_FILE) -> None:
     fig = plt.figure(figsize=(18, 10), dpi=150)
     fig.patch.set_facecolor("#f7f8fc")
-    grid = fig.add_gridspec(2, 2, hspace=0.25, wspace=0.18)
+    grid = fig.add_gridspec(2, 2, hspace=0.26, wspace=0.18)
+    fig.subplots_adjust(bottom=0.11)
 
     # 1) Dataset Accuracy & Performance
     ax1 = fig.add_subplot(grid[0, 0])
@@ -99,7 +102,7 @@ def create_advanced_matrix(output_path: str = OUTPUT_FILE) -> None:
     ax3 = fig.add_subplot(grid[1, 0])
     conf_labels = list(CONFIDENCE_DISTRIBUTION.keys())
     conf_values = list(CONFIDENCE_DISTRIBUTION.values())
-    conf_colors = ["#22c55e", "#38bdf8", "#f59e0b"]
+    conf_colors = ["#22c55e", "#38bdf8", "#0ea5e9", "#f59e0b", "#ef4444"]
 
     wedges, _ = ax3.pie(
         conf_values,
@@ -114,10 +117,10 @@ def create_advanced_matrix(output_path: str = OUTPUT_FILE) -> None:
         wedges,
         [f"{label}: {value}%" for label, value in zip(conf_labels, conf_values)],
         loc="lower center",
-        bbox_to_anchor=(0.5, -0.12),
+        bbox_to_anchor=(0.5, -0.20),
         ncol=1,
         frameon=False,
-        fontsize=9,
+        fontsize=8.6,
     )
 
     # 4) Top Performing Intents

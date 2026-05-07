@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7fbff"/>
+      <stop offset="100%" stop-color="#e6f0ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#8799b8" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1480" height="780" rx="24" fill="#ffffff" filter="url(#shadow)"/>
+
+  <text x="110" y="145" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="700" fill="#1f2a44">Analytical Metrics: Model Performance Comparison</text>
+  <text x="110" y="190" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#52607a">Draft values for PPT (replace with exact values from research paper if needed)</text>
+
+  <line x1="110" y1="230" x2="1490" y2="230" stroke="#d7deea" stroke-width="2"/>
+
+  <text x="110" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#22314d">Overall Score (0-100)</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#2b3c5d">
+    <text x="110" y="350">Baseline Model</text>
+    <text x="110" y="440">Traditional ML</text>
+    <text x="110" y="530">Proposed Hybrid</text>
+    <text x="110" y="620">Fine-Tuned Model</text>
+    <text x="110" y="710">Final System (Paper)</text>
+  </g>
+
+  <g>
+    <rect x="350" y="320" width="840" height="42" rx="8" fill="#e9eff8"/>
+    <rect x="350" y="320" width="638" height="42" rx="8" fill="#5b8def"/>
+    <text x="1008" y="349" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#27416f">76.0</text>
+
+    <rect x="350" y="410" width="840" height="42" rx="8" fill="#e9eff8"/>
+    <rect x="350" y="410" width="697" height="42" rx="8" fill="#43a2ca"/>
+    <text x="1067" y="439" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#24516a">83.0</text>
+
+    <rect x="350" y="500" width="840" height="42" rx="8" fill="#e9eff8"/>
+    <rect x="350" y="500" width="739" height="42" rx="8" fill="#2db7a3"/>
+    <text x="1109" y="529" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f5a50">88.0</text>
+
+    <rect x="350" y="590" width="840" height="42" rx="8" fill="#e9eff8"/>
+    <rect x="350" y="590" width="756" height="42" rx="8" fill="#f0b73e"/>
+    <text x="1126" y="619" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#6d4c00">90.0</text>
+
+    <rect x="350" y="680" width="840" height="42" rx="8" fill="#e9eff8"/>
+    <rect x="350" y="680" width="781" height="42" rx="8" fill="#ef6a5b"/>
+    <text x="1151" y="709" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#772a21">93.0</text>
+  </g>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#6d7d99">
+    <text x="350" y="770">0</text>
+    <text x="518" y="770">20</text>
+    <text x="686" y="770">40</text>
+    <text x="854" y="770">60</text>
+    <text x="1022" y="770">80</text>
+    <text x="1185" y="770">100</text>
+  </g>
+
+  <line x1="350" y1="745" x2="1190" y2="745" stroke="#aab8d1" stroke-width="2"/>
+
+  <text x="1235" y="350" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="600" fill="#1f2a44">Highlights</text>
+  <text x="1235" y="385" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#44526e">- +17.0 points vs baseline</text>
+  <text x="1235" y="415" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#44526e">- Best performance in final model</text>
+  <text x="1235" y="445" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#44526e">- Consistent gains across iterations</text>
+
+  <text x="110" y="815" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#74839e">Figure 1. Comparative analytical report of model versions.</text>
+</svg>
