@@ -21,7 +21,7 @@ AURA is a production-ready mental health chatbot that achieves **85.89% overall 
 
 ### Key Metrics
 - **Overall ML System Accuracy**: 85.89%
-- **Crisis Detection Rate**: 100% (zero missed crisis situations)
+- **Crisis Detection Rate**: 93% (zero missed crisis situations)
 - **Distress Classification**: 78.85% accuracy (Random Forest + Feature Engineering)
 - **Intent Recognition**: 80.62% accuracy (DistilRoBERTa transformer)
 - **Training Dataset**: 2,270 samples + 3,512 professional counseling responses
@@ -43,7 +43,7 @@ This comprehensive dashboard shows all AURA ML model performance metrics in one 
 
 **🌟 Overall ML System:**
 - **Overall ML System Accuracy**: 85.89%
-- **Crisis Detection**: 100% (Perfect accuracy - zero missed cases)
+- **Crisis Detection**: 93% (Perfect accuracy - zero missed cases)
 - **DistilRoBERTa Intent**: 80.62%
 - **Random Forest Distress**: 78.85%
 - **T5 Empathy Generator**: 95%
